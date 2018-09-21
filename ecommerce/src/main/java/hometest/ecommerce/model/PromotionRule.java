@@ -16,11 +16,40 @@ public class PromotionRule {
 	/** The group. */
 	private int group;
 
+	/** The color. */
+	private String color;
+
 	/** The sub total. */
 	private double subTotal;
 
 	/** The discount. */
 	private double discount;
+
+	/**
+	 * Instantiates a new promotion rule.
+	 *
+	 * @param from
+	 *            the from
+	 * @param to
+	 *            the to
+	 * @param group
+	 *            the group
+	 * @param color
+	 *            the color
+	 * @param subTotal
+	 *            the sub total
+	 * @param discount
+	 *            the discount
+	 */
+	public PromotionRule(Date from, Date to, int group, String color, double subTotal, double discount) {
+		super();
+		this.from = from;
+		this.to = to;
+		this.group = group;
+		this.color = color;
+		this.subTotal = subTotal;
+		this.discount = discount;
+	}
 
 	/**
 	 * Gets the from.
@@ -80,6 +109,25 @@ public class PromotionRule {
 	}
 
 	/**
+	 * Gets the color.
+	 *
+	 * @return the color
+	 */
+	public String getColor() {
+		return color;
+	}
+
+	/**
+	 * Sets the color.
+	 *
+	 * @param color
+	 *            the new color
+	 */
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	/**
 	 * Gets the sub total.
 	 *
 	 * @return the sub total
@@ -116,4 +164,11 @@ public class PromotionRule {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
+
+	@Override
+	public String toString() {
+		return "PromotionRule [from=" + from + ", to=" + to + ", group=" + group + ", color=" + color + ", subTotal="
+				+ subTotal + ", discount=" + discount + "]";
+	}
+
 }

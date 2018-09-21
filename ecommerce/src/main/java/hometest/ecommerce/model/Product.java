@@ -4,16 +4,30 @@ package hometest.ecommerce.model;
  * The Class Product.
  */
 public class Product {
-	
+
 	/** The name. */
 	private String name;
-	
+
 	/** The color. */
 	private String color;
-	
+
 	/** The price. */
-	private Double price;
+	private double price;
 	
+	/**
+	 * Instantiates a new product.
+	 *
+	 * @param name the name
+	 * @param color the color
+	 * @param price the price
+	 */
+	public Product(String name, String color, double price) {
+		super();
+		this.name = name;
+		this.color = color;
+		this.price = price;
+	}
+
 	/**
 	 * Gets the name.
 	 *
@@ -22,16 +36,17 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the new name
+	 * @param name
+	 *            the new name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Gets the color.
 	 *
@@ -40,16 +55,17 @@ public class Product {
 	public String getColor() {
 		return color;
 	}
-	
+
 	/**
 	 * Sets the color.
 	 *
-	 * @param color the new color
+	 * @param color
+	 *            the new color
 	 */
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
+
 	/**
 	 * Gets the price.
 	 *
@@ -58,16 +74,28 @@ public class Product {
 	public Double getPrice() {
 		return price;
 	}
-	
+
 	/**
 	 * Sets the price.
 	 *
-	 * @param price the new price
+	 * @param price
+	 *            the new price
 	 */
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
+
+	/**
+	 * Gets the key.
+	 *
+	 * @return the key
+	 */
+	public String getKey() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append(name).append(color).append(price);
+		return strBuilder.toString();
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -77,10 +105,12 @@ public class Product {
 		int result = 1;
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -103,11 +133,18 @@ public class Product {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (price == null) {
-			if (other.price != null)
-				return false;
-		} else if (!price.equals(other.price))
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Product [name=" + name + ", color=" + color + ", price=" + price + "]";
 	}
 }

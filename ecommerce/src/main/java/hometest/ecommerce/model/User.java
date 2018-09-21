@@ -1,8 +1,5 @@
 package hometest.ecommerce.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * The Class User.
  */
@@ -18,7 +15,21 @@ public class User {
 	private int group;
 
 	/** The carts. */
-	private List<ShoppingCart> carts = new ArrayList<ShoppingCart>();
+	private ShoppingCart cart = new ShoppingCart();
+
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param name
+	 *            the name
+	 * @param email
+	 *            the email
+	 */
+	public User(String name, String email) {
+		super();
+		this.name = name;
+		this.email = email;
+	}
 
 	/**
 	 * Instantiates a new user.
@@ -30,10 +41,12 @@ public class User {
 	 * @param group
 	 *            the group
 	 */
-	public User(String name, String email) {
+	public User(String name, String email, int group) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.group = group;
+		this.cart.setUser(this);
 	}
 
 	/**
@@ -94,14 +107,19 @@ public class User {
 	}
 
 	/**
-	 * Gets the carts.
+	 * Gets the cart.
 	 *
-	 * @return the carts
+	 * @return the cart
 	 */
-	public List<ShoppingCart> getCarts() {
-		return carts;
+	public ShoppingCart getCart() {
+		return cart;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -113,6 +131,11 @@ public class User {
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -137,4 +160,11 @@ public class User {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", email=" + email + ", group=" + group + ", cart=" + cart + "]";
+	}
 }
